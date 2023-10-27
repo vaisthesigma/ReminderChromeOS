@@ -10,10 +10,26 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (task && time) {
             const reminderTime = new Date(time).toLocaleString();
+            const currentTime = new Date();
+            
+            if (currentTime < new Date(time)) {
+                const reminderItem = document.createElement("li");
+                reminderItem.textContent = `Task: ${task}, Time: ${reminderTime}`;
+                reminderList.appendChild(reminderItem);
 
-            const reminderItem = document.createElement("li");
-            reminderItem.textContent = `Task: ${task}, Time: ${reminderTime}`;
-            reminderList.appendChild(reminderItem);
+                // Play a beep sound
+                const beep = new Audio("beep.wav");
+                beep.play();
+
+                // Show a push notification
+                if (Notification.permission === "granted") {
+                    const notification = new Notification("Reminder", {
+                        body: `Task: ${task}`,
+                    });
+                }
+            } else {
+                alert("Please choose a future time for your reminder.");
+            }
 
             taskInput.value = "";
             timeInput.value = "";
