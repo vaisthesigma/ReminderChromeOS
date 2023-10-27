@@ -26,9 +26,15 @@ ul {
 li {
     margin-bottom: 10px;
     cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid #ccc;
+    background: #f9f9f9;
+    border-radius: 5px;
 }
 
-.completed {
-    text-decoration: line-through;
-    color: #777;
+li:hover {
+    background: #fff;
 }

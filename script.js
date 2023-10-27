@@ -2,24 +2,20 @@ document.addEventListener("DOMContentLoaded", function () {
     const taskInput = document.getElementById("task");
     const addTaskButton = document.getElementById("add-task");
     const taskList = document.getElementById("task-list");
-    const completedTaskList = document.getElementById("completed-task-list");
 
     addTaskButton.addEventListener("click", function () {
-        const task = taskInput.value;
+        const taskText = taskInput.value;
 
-        if (task) {
+        if (taskText) {
             const taskItem = document.createElement("li");
-            taskItem.textContent = task;
+            taskItem.innerHTML = `
+                <span>${taskText}</span>
+                <button class="delete">Delete</button>
+            `;
             taskList.appendChild(taskItem);
 
-            taskItem.addEventListener("click", function () {
-                if (!taskItem.classList.contains("completed")) {
-                    taskItem.classList.add("completed");
-                    completedTaskList.appendChild(taskItem);
-                } else {
-                    taskItem.classList.remove("completed");
-                    taskList.appendChild(taskItem);
-                }
+            taskItem.querySelector(".delete").addEventListener("click", function () {
+                taskList.removeChild(taskItem);
             });
 
             taskInput.value = "";
