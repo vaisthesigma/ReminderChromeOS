@@ -18,10 +18,6 @@ input, button {
     margin: 10px;
 }
 
-.reminders {
-    margin: 20px;
-}
-
 ul {
     list-style-type: none;
     padding: 0;
@@ -29,4 +25,10 @@ ul {
 
 li {
     margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.completed {
+    text-decoration: line-through;
+    color: #777;
 }
